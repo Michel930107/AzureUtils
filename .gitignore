@@ -1,0 +1,14 @@
+# Ignore config.ini
+config.ini
+
+# Ignore pycache
+__pycache__/
+
+# Ignore Build
+build/
+
+# Ignore dist
+dist/
+
+AzureBlobTool.spec
+main.spec
