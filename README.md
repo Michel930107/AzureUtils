@@ -118,16 +118,10 @@ You can also modify `blob_utils.py` to perform a **dry run** by commenting out t
 
 ---
 
-## License
-
-This project is licensed under the MIT License. See the [LICENSE](./LICENSE) file for more details.
-
----
-
 ## Author
 
-- **Michel Borrego**
-  - Email: michel@fxstreet.com, michelbh93@gmail.com
+- **Michel**
+  - Email: michelbh93@gmail.com
   - GitHub: [Michel930107](https://github.com/Michel930107/Automations/tree/main/BlobStorage)
 
 ---
