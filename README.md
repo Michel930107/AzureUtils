@@ -1,7 +1,7 @@
 
 # AzureBlobTool
 
-![AzureBlobTool Logo](.icon/icon.jpeg)
+![AzureBlobTool Logo](icon/icon.jpeg)
 
 ## Overview
 
