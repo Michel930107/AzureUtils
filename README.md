@@ -57,7 +57,7 @@ To install the tool, follow these steps:
 
 4. (Optional) Build the executable using PyInstaller:
    ```bash
-   pyinstaller --onefile --icon=icon/icon.jpeg main.py
+   pyinstaller --onefile --name {a_very_cool_name} --icon=icon/icon.jpeg main.py
    ```
 
 ---
