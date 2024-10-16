@@ -16,8 +16,7 @@ def delete_old_blobs(connection_string, cutoff_date):
     signal.signal(signal.SIGINT, signal_handler)
         
     try:
-        blob_service_client = BlobServiceClient.from_connection_string(
-            connection_string, api_version='2019-12-12')
+        blob_service_client = BlobServiceClient.from_connection_string(connection_string, api_version='2019-12-12')
 
         containers = blob_service_client.list_containers()
 
@@ -36,8 +35,15 @@ def delete_old_blobs(connection_string, cutoff_date):
                     sys.exit(0)
 
                 if creation_time < cutoff_date:
-                    print(f"Deleting blob: '{blob.name}' in container: '{container_name}'")
-                    blob_client.delete_blob()
+                    try:
+                        print(f"Deleting blob: '{blob.name}' in container: '{container_name}'")
+                        blob_client.delete_blob()
+                    except Exception as e:
+                        # Handle DirectoryIsNotEmpty error
+                        if "DirectoryIsNotEmpty" in str(e):
+                            print(f"Cannot delete non-empty directory: '{blob.name}'")
+                        else:
+                            print(f"An error occurred during deletion: {e}")
                 else:
                     print(f"Skipping blob: '{blob.name}', creation time is after cutoff date")
 
