@@ -64,18 +64,27 @@ def get_valid_cutoff_date():
 
 
 def main():
-    connection_string = get_valid_connection_string()
+    try:
+        connection_string = get_valid_connection_string()
 
-    # Get a valid cutoff date
-    cutoff_date = get_valid_cutoff_date()
+        # Get a valid cutoff date
+        cutoff_date = get_valid_cutoff_date()
+        
+        # Confirm with the user before proceeding
+        confirm = input(f"\nAre you sure you want to delete all blobs created before {cutoff_date.isoformat()}? Type 'yes' to confirm: ")
+        if confirm.lower() == 'yes':
+            delete_old_blobs(connection_string, cutoff_date)
+            print("\n[SUCCESS] Deletion completed.\n")
+        else:
+            print("\n[INFO] Deletion canceled.\n")
     
-    # Confirm with the user before proceeding
-    confirm = input(f"\nAre you sure you want to delete all blobs created before {cutoff_date.isoformat()}? Type 'yes' to confirm: ")
-    if confirm.lower() == 'yes':
-        delete_old_blobs(connection_string, cutoff_date)
-        print("\n[SUCCESS] Deletion completed.\n")
-    else:
-        print("\n[INFO] Deletion canceled.\n")
+    except Exception as e:
+        # Print the error without closing the console
+        print(f"\n[ERROR] An unexpected error occurred: {e}")
+    
+    finally:
+        # Keep the console open and print success or error message
+        input("\nPress Enter to close the program...")
 
 if __name__ == "__main__":
     main()
